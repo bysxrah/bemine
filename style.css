@@ -1,0 +1,342 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+@font-face {
+  font-family: 'BillaMount';
+  src: url('BillaMount-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #fff;
+}
+
+body {
+  background-color: #fff;
+  background-image: url('bg_fixed.png');
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: auto 85%;
+  cursor: url('arrow-cursor.png') 4 4, auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+@media (max-width: 600px) {
+  body {
+    background-image: url('mobile_bg_fixed.png');
+    background-position: center bottom;
+    background-size: 100% auto;
+  }
+}
+
+/* ---- Title ---- */
+.title {
+  font-family: 'BillaMount', cursive;
+  font-weight: normal;
+  font-size: clamp(1.6rem, 4vw, 3rem);  /* ← adjust size here */
+  color: #b22222;
+  margin-top: 32vh;                      /* ← adjust vertical position here, higher % = further down */
+  margin-left: 20vw;
+  line-height: 1.1;
+  pointer-events: none;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: clamp(1.4rem, 7vw, 2rem);
+    margin-top: 18vh;
+    margin-left: 15vw;
+  }
+}
+
+/* ---- Buttons ---- */
+.buttons {
+  position: fixed;
+  bottom: 19vh;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 23vw;  /* ← increase to move right */
+  gap: 3vw;
+}
+
+@media (max-width: 600px) {
+  .buttons {
+    bottom: 16vh;
+    padding-left: 27vw;
+    gap: 4vw;
+  }
+}
+
+/* ---- No button — positioned independently ---- */
+.btn-no-wrap {
+  position: fixed;
+  bottom: 27vh;        /* ← same as yes, or change to move up/down */
+  left: 38.5vw;          /* ← adjust to move left/right on desktop */
+}
+
+@media (max-width: 600px) {
+  .btn-no-wrap {
+    bottom: 25vh;      /* ← mobile vertical */
+    left: 85vw;        /* ← mobile horizontal */
+  }
+}
+
+.btn {
+  background: none;
+  border: none;
+  cursor: url('arrow-cursor.png') 4 4, pointer;
+  transition: transform 0.15s;
+  line-height: 1;
+}
+.btn:hover {
+  transform: scale(1.1);
+}
+
+.btn-yes {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: clamp(0.65rem, 1.2vw, 0.9rem);
+  color: #b22222;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.btn-yes::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 16px;
+  background-color: #b22222;
+}
+
+.btn-no {
+  color: #333;
+  font-size: clamp(0.7rem, 1.5vw, 0.95rem);
+  font-family: Georgia, serif;
+  font-style: italic;
+  position: relative;
+}
+
+/* ---- Overlay ---- */
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 240, 240, 0.55);
+  backdrop-filter: blur(4px);
+  z-index: 300;
+  align-items: center;
+  justify-content: center;
+}
+.overlay.open {
+  display: flex;
+}
+
+/* ---- Popover ---- */
+.popover {
+  position: relative;
+  width: min(420px, 88vw);
+  animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  background: transparent;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.6) translateY(20px); opacity: 0; }
+  to   { transform: scale(1)   translateY(0);    opacity: 1; }
+}
+
+.envelope-img {
+  width: 100%;
+  display: block;
+  opacity: 1;
+}
+
+/* ---- Adjust top/left/width to reposition text on the card ---- */
+.popover-content {
+  position: absolute;
+  top: 28%;          /* ↕ increase to move down */
+  left: 11%;         /* ↔ decrease to move left */
+  width: 65%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0rem;
+}
+
+.popover-heading {
+  font-family: 'BillaMount', cursive;
+  font-weight: normal;
+  font-size: 2rem;
+  color: #1a0a00;
+  line-height: 1.2;
+  margin-bottom: 2rem; /* ← large gap below heading */
+  -webkit-font-smoothing: antialiased;
+}
+
+.popover-sub {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: .69rem;
+  color: #444;
+  letter-spacing: 0.02em;
+  line-height: 1.75;
+}
+
+.popover-icons {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.icon-link {
+  font-size: 1.5rem;
+  text-decoration: none;
+  transition: transform 0.15s, opacity 0.15s;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  gap: 3.5rem;
+}
+.icon-link:hover {
+  transform: scale(1.2);
+  opacity: 0.8;
+}
+.icon-link span {
+  display: none;
+}
+
+
+
+/* ---- Mobile popover font sizes ---- */
+@media (max-width: 600px) {
+  .popover {
+    width: min(320px, 92vw);
+  }
+
+  .popover-heading {
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .popover-sub {
+    font-size: 0.5rem;
+  }
+
+  .popover-icons {
+    gap: 1.25rem;
+  }
+
+  .icon-link {
+    font-size: 1.2rem;
+  }
+}
+
+/* ---- Mobile title + yes button size + rose gold glow animation ---- */
+@media (max-width: 600px) {
+
+  .title {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  .btn-yes {
+    font-size: clamp(0.85rem, 3vw, 1.2rem);
+    animation: candleShimmer 3s ease-in-out infinite;
+  }
+
+  @keyframes candleShimmer {
+    0%   {
+      text-shadow: none;
+      color: #b22222;
+    }
+    25%  {
+      text-shadow: 0 0 8px rgba(220, 150, 130, 0.9), 0 0 16px rgba(200, 120, 100, 0.6), 0 0 30px rgba(180, 100, 80, 0.3);
+      color: #c0392b;
+    }
+    50%  {
+      text-shadow: 0 0 6px rgba(230, 165, 145, 1), 0 0 20px rgba(210, 135, 115, 0.8), 0 0 40px rgba(190, 110, 90, 0.4), 0 0 60px rgba(170, 90, 70, 0.15);
+      color: #b22222;
+    }
+    65% {
+      text-shadow: 0 0 4px rgba(235, 175, 155, 0.7), 0 0 10px rgba(215, 145, 125, 0.4);
+      color: #c0392b;
+    }
+    80%  {
+      text-shadow: 0 0 10px rgba(225, 158, 138, 0.9), 0 0 22px rgba(205, 128, 108, 0.6), 0 0 35px rgba(185, 105, 85, 0.3);
+      color: #b22222;
+    }
+    100% {
+      text-shadow: none;
+      color: #b22222;
+    }
+  }
+}
+
+/* ---- Mobile popover font sizes ---- */
+@media (max-width: 600px) {
+  .popover { width: min(320px, 92vw); }
+  .popover-heading { font-size: 1.5rem; margin-bottom: 1.2rem; }
+  .popover-sub { font-size: 0.5rem; }
+  .popover-icons { gap: 1.25rem; }
+  .icon-link { font-size: 1.2rem; }
+}
+
+/* ---- Mobile title + yes button size ---- */
+@media (max-width: 600px) {
+  .title { font-size: clamp(2rem, 10vw, 3rem); }
+  .btn-yes { font-size: clamp(0.85rem, 3vw, 1.2rem); }
+}
+
+/* ---- Glitter sparkle particles ---- */
+.sparkle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 999;
+  line-height: 1;
+  animation: sparkleFade 1.4s ease-out forwards;
+}
+
+@keyframes sparkleFade {
+  0%   { transform: scale(1) translate(0, 0) rotate(0deg); opacity: 1; }
+  60%  { opacity: 0.8; }
+  100% { transform: scale(0.5) translate(var(--dx), var(--dy)) rotate(20deg); opacity: 0; }
+}
+
+/* ---- Footer ---- */
+.footer {
+  position: fixed;
+  bottom: 12px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 0.6rem;
+  color: #aaa;
+  letter-spacing: 0.08em;
+  pointer-events: none;
+  z-index: 2;
+}
