@@ -136,6 +136,8 @@ body {
   font-family: Georgia, serif;
   font-style: italic;
   position: relative;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
 }
 
 /* ---- Overlay ---- */
@@ -255,44 +257,11 @@ body {
   }
 }
 
-/* ---- Mobile title + yes button size + rose gold glow animation ---- */
+
+/* ---- Mobile title + yes button size ---- */
 @media (max-width: 600px) {
-
-  .title {
-    font-size: clamp(2rem, 10vw, 3rem);
-  }
-
-  .btn-yes {
-    font-size: clamp(0.85rem, 3vw, 1.2rem);
-    animation: candleShimmer 3s ease-in-out infinite;
-  }
-
-  @keyframes candleShimmer {
-    0%   {
-      text-shadow: none;
-      color: #b22222;
-    }
-    25%  {
-      text-shadow: 0 0 8px rgba(220, 150, 130, 0.9), 0 0 16px rgba(200, 120, 100, 0.6), 0 0 30px rgba(180, 100, 80, 0.3);
-      color: #c0392b;
-    }
-    50%  {
-      text-shadow: 0 0 6px rgba(230, 165, 145, 1), 0 0 20px rgba(210, 135, 115, 0.8), 0 0 40px rgba(190, 110, 90, 0.4), 0 0 60px rgba(170, 90, 70, 0.15);
-      color: #b22222;
-    }
-    65% {
-      text-shadow: 0 0 4px rgba(235, 175, 155, 0.7), 0 0 10px rgba(215, 145, 125, 0.4);
-      color: #c0392b;
-    }
-    80%  {
-      text-shadow: 0 0 10px rgba(225, 158, 138, 0.9), 0 0 22px rgba(205, 128, 108, 0.6), 0 0 35px rgba(185, 105, 85, 0.3);
-      color: #b22222;
-    }
-    100% {
-      text-shadow: none;
-      color: #b22222;
-    }
-  }
+  .title { font-size: clamp(2rem, 10vw, 3rem); }
+  .btn-yes { font-size: clamp(0.85rem, 3vw, 1.2rem); }
 }
 
 /* ---- Mobile popover font sizes ---- */
