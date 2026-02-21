@@ -77,7 +77,7 @@ body {
 
 @media (max-width: 600px) {
   .buttons {
-    bottom: 16vh;
+    bottom: 24vh;
     padding-left: 27vw;
     gap: 4vw;
   }
@@ -136,8 +136,6 @@ body {
   font-family: Georgia, serif;
   font-style: italic;
   position: relative;
-  -webkit-tap-highlight-color: transparent;
-  outline: none;
 }
 
 /* ---- Overlay ---- */
